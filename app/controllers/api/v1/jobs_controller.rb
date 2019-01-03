@@ -4,17 +4,22 @@ class Api::V1::JobsController < ApplicationController
     def index
       @jobs = Job.all
       render json: @jobs
-    
+    end
+
     def show
         render json: @job
     end
 
+    def new
+
+    end
+
     def create
-        @job = Job.new(Job_params)
+        @job = Job.new(job_params)
         if @job.save
             render json: @job
         else
-            render json: {error: 'Unable to add story.'}, status: 400
+            render json: {error: 'Unable to add job.'}, status: 400
         end
     end
 
@@ -31,7 +36,7 @@ class Api::V1::JobsController < ApplicationController
     private
   
     def job_params
-      params.require(:job).permit([])
+      params.require(:job).permit(:brand, :description, :agent_id)
     end
   
     def find_job

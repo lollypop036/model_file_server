@@ -1,10 +1,11 @@
 class Api::V1::ModelsController < ApplicationController
 
 
-    before_action :find_model, only: [:update, :show, delete]
+    before_action :find_model, only: [:update, :show, :destroy]
     def index
       @models = Model.all
       render json: @models
+    end
     
     def show
         render json: @model
@@ -29,7 +30,7 @@ class Api::V1::ModelsController < ApplicationController
       end
     end
 
-    def delete
+    def destroy
         @model.destroy
         @models = Models.all
         render json: @models
@@ -38,7 +39,8 @@ class Api::V1::ModelsController < ApplicationController
     private
   
     def model_params
-      params.require(:model).permit([])
+      params.require(:model).permit(:name, :dob, :sex, :location, :mobile, :image1, :image2, :image3, :height, :shoe, :clothing)
+
     end
   
     def find_model

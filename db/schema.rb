@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_21_103758) do
+ActiveRecord::Schema.define(version: 2019_01_03_123934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2018_12_21_103758) do
   end
 
   create_table "castings", force: :cascade do |t|
-    t.string "job_id"
+    t.integer "job_id"
     t.datetime "date"
     t.datetime "time"
     t.string "location"
@@ -65,14 +65,15 @@ ActiveRecord::Schema.define(version: 2018_12_21_103758) do
     t.string "image3"
     t.integer "height"
     t.integer "shoe"
-    t.integer "clothing"
+    t.string "clothing"
     t.integer "agent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image2"
   end
 
   create_table "shoots", force: :cascade do |t|
-    t.string "job_id"
+    t.integer "job_id"
     t.datetime "date"
     t.datetime "time"
     t.string "location"

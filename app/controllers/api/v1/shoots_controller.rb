@@ -4,18 +4,23 @@ class Api::V1::ShootsController < ApplicationController
     before_action :find_shoot, only: [:update, :show]
     def index
       @shoots = Shoot.all
-      render json: @shoots
+      render json: @shoots, include: :models
+    end
     
     def show
-        render json: @shoot
+        render json: @shoot, include: :models
     end
 
     def create
         @shoot = Shoot.new(shoot_params)
+       
         if @shoot.save
-            render json: @shoot
+          params['model_ids'].each do |m|
+            @shoot.models << Model.find(m)
+          end
+            render json: @shoot, include: :models
         else
-            render json: {error: 'Unable to add story.'}, status: 400
+            render json: {error: 'Unable to add shoot.'}, status: 400
         end
     end
 
@@ -32,10 +37,17 @@ class Api::V1::ShootsController < ApplicationController
     private
   
     def shoot_params
-      params.require(:shoot).permit([])
+      params.require(:shoot).permit(
+      :job_id, 
+      :date, 
+      :time,
+      :location,
+      :pay,
+      model_ids:[]
+      )
     end
   
-    def find_job
+    def find_shoot
       @shoot = Shoot.find(params[:id])
     end
 

@@ -1,6 +1,7 @@
 class Api::V1::CastingsController < ApplicationController
 
     before_action :find_casting, only: [:update, :show]
+
     def index
       @castings = Casting.all
       render json: @castings
@@ -13,7 +14,10 @@ class Api::V1::CastingsController < ApplicationController
     def create
         @casting = Casting.new(casting_params)
         if @casting.save
-            render json: @casting
+          params['model_ids'].each do |m|
+            @casting.models << Model.find(m)
+          end
+            render json: @casting, include: :models
         else
             render json: {error: 'Unable to add story.'}, status: 400
         end
@@ -32,7 +36,7 @@ class Api::V1::CastingsController < ApplicationController
     private
   
     def casting_params
-      params.require(:casting).permit([])
+      params.require(:casting).permit(:job_id, :date, :time, :location, :details, model_ids: [])
     end
   
     def find_casting
