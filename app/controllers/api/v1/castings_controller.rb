@@ -4,11 +4,11 @@ class Api::V1::CastingsController < ApplicationController
 
     def index
       @castings = Casting.all
-      render json: @castings
+      render json: @castings, include: :models
     end
     
     def show
-        render json: @casting
+        render json: @casting, include: :models
     end
 
     def create
