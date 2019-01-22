@@ -1,24 +1,32 @@
-# README
+# model file - Server
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Telescoop is a web app for agents to manage their book of models and jobs.
 
-Things you may want to cover:
 
-* Ruby version
+## Getting Started
 
-* System dependencies
+This is the server side repo for the app. The client side repo cabe found [here](https://github.com/lollypop036/model_file_client)
 
-* Configuration
 
-* Database creation
+## Prerequisites
 
-* Database initialization
+You will need to install Rails 2.5.3
 
-* How to run the test suite
+# Setting up the environment
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+$ bundle
+$ rails db create && rails db:migrate
+$ rails db:seed
+$ rails s
+```
 
-* Deployment instructions
+## Built With
 
-* ...
+Rails
+
+
+## Authors
+
+[Lola Onanuga](https://github.com/lollypop036)
+
