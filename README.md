@@ -1,11 +1,11 @@
 # model file - Server
 
-Telescoop is a web app for agents to manage their book of models and jobs.
-
+model file is a web app for agents to manage their book of models and jobs.
+[Demo video](https://youtu.be/eULFB0mpYUU)
 
 ## Getting Started
 
-This is the server side repo for the app. The client side repo cabe found [here](https://github.com/lollypop036/model_file_client)
+This is the server side repo for the app. The client side repo can be found [here](https://github.com/lollypop036/model_file_client)
 
 
 ## Prerequisites
